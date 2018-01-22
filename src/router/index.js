@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 const aComponent = resolve => require(['../pages/a.vue'], resolve)
 const bComponent = resolve => require(['../pages/b.vue'], resolve)
+const cComponent = resolve => require(['../pages/c.vue'], resolve)
 
 
 Vue.use(VueRouter)
@@ -15,6 +16,10 @@ const routes = [
     },{
         path: '/b',
         component: bComponent,
+        props: true
+    },{
+        path: '/c',
+        component: cComponent,
         props: true
     },
 

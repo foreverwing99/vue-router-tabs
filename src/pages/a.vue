@@ -13,7 +13,11 @@
     Vue.use(ElButton)
 
     export default {
-        props:['tabsValue'],
+        props:{
+            selectTab:String,
+            tabsValue:Array,
+            tabsIndex:Number
+        },
         component:{
         },
         data() {
@@ -23,54 +27,39 @@
         },
         methods: {
             toBpage(){
-                console.log(this.tabsValue,'tabsValue');
+/*
 
+            :select-tab="editableTabsValue2"
+            :tabs-value="editableTabs2"
+            :tabs-index="tabIndex"
+*/
 
-              /*  console.log(this.editableTabs2,'editableTabs2');
-                console.log(this.tabIndex,'tabIndex');
-                console.log(this.editableTabsValue2,'editableTabsValue2');
-
-                let newTabName = ++this.tabIndex + '';
-                this.editableTabs2.push({
-                    title: 'page a',
+                var seltab = this.selectTab; //String
+                var Index = this.tabsIndex; //Number
+                var newTabName =  ++Index + '';
+                var tabs = this.tabsValue.concat({
+                    title: 'page c',
                     name: newTabName,
-                    path:'/b'
+                    path:'/c'
                 });
-                this.editableTabsValue2 = newTabName;
-                this.$router.push('/b');*/
+                seltab = newTabName + '';
+                console.log(seltab,'seltab');
+                console.log(tabs,'tabs');
+                console.log(Index,'Index');
+                /*console.log(typeof seltab,'seltab');
+                console.log(typeof Index,'Index');*/
+
+                this.$emit('updateTabs',seltab,tabs,Index);
+                // this.$emit('updateTabs',2,tabs,'2');
+                // this.$emit('updateTabs',Index,tabs,seltab);
+                this.$router.push('/c');
+
             },
             onSubmit(){
                 console.log('haha');
                 console.log(item.path,'item');
                 this.$router.push('/a');
-            },
-            /*addTab(targetName) {
-                let newTabName = ++this.tabIndex + '';
-                this.editableTabs2.push({
-                    title: 'New Tab',
-                    name: newTabName,
-                    content: 'New Tab content',
-                    path:'http://'
-                });
-                this.editableTabsValue2 = newTabName;
-            },
-            removeTab(targetName) {
-                let tabs = this.editableTabs2;
-                let activeName = this.editableTabsValue2;
-                if (activeName === targetName) {
-                    tabs.forEach((tab, index) => {
-                        if (tab.name === targetName) {
-                            let nextTab = tabs[index + 1] || tabs[index - 1];
-                            if (nextTab) {
-                                activeName = nextTab.name;
-                            }
-                        }
-                    });
-                }
-
-                this.editableTabsValue2 = activeName;
-                this.editableTabs2 = tabs.filter(tab => tab.name !== targetName);
-            }*/
+            }
         }
     }
 </script>

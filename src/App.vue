@@ -11,10 +11,10 @@
               :name="item.name">
           <template>
               <router-view
-                      :tabs-value="editableTabsValue2"
-                      :editableTabs2="editableTabs2"
-                      :tabIndex="tabIndex"
-
+                      v-on:updateTabs="handleUpdateTabs"
+                      :select-tab="editableTabsValue2"
+                      :tabs-value="editableTabs2"
+                      :tabs-index="tabIndex"
               ></router-view>
           </template>
       </el-tab-pane>
@@ -27,7 +27,7 @@
     export default {
     data() {
         return {
-            editableTabsValue2: '2',
+            editableTabsValue2: '0',
             editableTabs2: [{
                 title: 'Tab 1',
                 name: '0',
@@ -37,23 +37,30 @@
                 name: '1',
                 path:'/b'
             }],
-            tabIndex: 2
+            tabIndex: 1
         }
     },
     methods: {
+        handleUpdateTabs(editableTabsValue2,editableTabs2,tabIndex){
+            console.log('----');
+            this.editableTabsValue2 = editableTabsValue2;
+            this.editableTabs2 = editableTabs2;
+            this.tabIndex = tabIndex;
+        },
         handleClick(tab) {
-            // console.log(tab.$options.propsData.name);
-            // console.log(this.editableTabs2[tab.$options.propsData.name].path);
-            this.$router.push(this.editableTabs2[tab.$options.propsData.name].path);
 
+            console.log(this.editableTabs2);
+            console.log(tab.$options.propsData.name,'tab');
+
+            this.$router.push(this.editableTabs2[tab.$options.propsData.name].path);
         },
         addTab(targetName) {
-            let newTabName = ++this.tabIndex + '';
+            let newTabName = ++this.tabIndex;
             this.editableTabs2.push({
                 title: 'New Tab',
                 name: newTabName,
                 content: 'New Tab content',
-                path:'http://'
+                path:'/c'
             });
             this.editableTabsValue2 = newTabName;
 
@@ -76,9 +83,8 @@
             this.editableTabs2 = tabs.filter(tab => tab.name !== targetName);*/
             console.log(targetName,'targetName');
             this.$router.push('/a');
-
         }
-    }
+        }
 }
 </script>
 
