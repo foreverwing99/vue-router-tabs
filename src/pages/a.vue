@@ -13,6 +13,7 @@
     Vue.use(ElButton)
 
     export default {
+        props:['tabsValue'],
         component:{
         },
         data() {
@@ -22,6 +23,9 @@
         },
         methods: {
             toBpage(){
+                console.log(this.tabsValue,'tabsValue');
+
+
               /*  console.log(this.editableTabs2,'editableTabs2');
                 console.log(this.tabIndex,'tabIndex');
                 console.log(this.editableTabsValue2,'editableTabsValue2');

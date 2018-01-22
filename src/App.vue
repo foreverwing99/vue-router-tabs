@@ -10,7 +10,12 @@
               :label="item.title"
               :name="item.name">
           <template>
-              <router-view></router-view>
+              <router-view
+                      :tabs-value="editableTabsValue2"
+                      :editableTabs2="editableTabs2"
+                      :tabIndex="tabIndex"
+
+              ></router-view>
           </template>
       </el-tab-pane>
     </el-tabs>
